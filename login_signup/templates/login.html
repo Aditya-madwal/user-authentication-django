@@ -1,0 +1,17 @@
+{% for msg in messages %}
+<h3>{{msg}}</h3>
+{% endfor %}
+
+<form method="post">
+  {% csrf_token %} enter username :
+  <input
+    type="text"
+    name="username"
+    label="enter username"
+    placeholder="adi7tyyaa"
+  />
+  enter password :
+  <input type="password" name="password" label="enter password" />
+  <input type="submit" value="login" />
+</form>
+<a href="{% url 'register' %}">signup krle pehle</a>
