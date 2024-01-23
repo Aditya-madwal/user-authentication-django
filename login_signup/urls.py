@@ -9,4 +9,5 @@ urlpatterns = [
     path('login/',views.loginview, name = 'login'),
     path('logout/',views.logoutview, name = 'logout'),
     path('',views.homeview, name = 'home'),
+    path('tasks/',views.taskview, name = 'tasks'),
 ]

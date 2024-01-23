@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .container {
+        text-align: center;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 600px;
+      }
+
+      form {
+        margin-bottom: 20px;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0;
+        box-sizing: border-box;
+      }
+
+      button {
+        background-color: #28a745;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      button:hover {
+        background-color: #218838;
+      }
+
+      .task {
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .task button {
+        background-color: #dc3545;
+        color: #fff;
+        border: none;
+        padding: 8px;
+        cursor: pointer;
+      }
+
+      a{
+        text-decoration : none;
+        color : white;
+      }
+
+      .task button:hover {
+        background-color: #c82333;
+      }
+    </style>
+    <title>Todo List App</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Todo List App</h1>
+      <form id="taskForm" method="POST">
+        <div>{{form.title.label}} : {{form.title}}</div>
+        <div>Description : {{form.desc}}</div>
+        {% csrf_token %}
+
+        <button type="submit">Add Task</button>
+      </form>
+
+      <div id="taskList">
+        {% for task in tasks %}
+            <div class = "task"> {{task.title}} : {{task.desc}} </div>
+        {% endfor %}
+      </div>
+      <button style="background-color: red"><a href = "{% url "logout" %}">Logout</a></button>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

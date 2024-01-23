@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import register
+from .models import *
 from.forms import *
 from django.contrib.auth.forms import UserCreationForm
 
@@ -57,3 +57,25 @@ def logoutview(request) :
 @login_required(login_url=loginview)
 def homeview(request) : 
     return render(request, 'home.html', {})
+
+@login_required(login_url=loginview)
+def taskview(request) :
+    form = taskform(request.POST)
+    tasks_list = task.objects.filter(author = request.user)
+
+    context = {
+        'form' : form,
+        'tasks' : tasks_list,
+    }
+
+    if request.method == "POST" :
+        if form.is_valid() :
+            title = request.POST['title']
+            desc = request.POST['desc']
+            new_task = task(title = title, desc = desc, author = request.user)
+            new_task.save()
+            return redirect(taskview)
+        else :
+            messages.error(request, "invalid input")
+
+    return render(request, 'tasks.html', context = context)

@@ -1,5 +1,5 @@
 from django import forms
-from .models import register
+from .models import *
 from django.forms.widgets import TextInput, PasswordInput
 
 from django.contrib.auth.models import User
@@ -24,3 +24,8 @@ class user_registeration_form(UserCreationForm) :
         model = User
         # now this is why we imported user model from auth
         fields = ['username', 'email', 'password1', 'password2']
+
+class taskform(forms.ModelForm):
+    class Meta:
+        model = task
+        fields = ['title','desc']

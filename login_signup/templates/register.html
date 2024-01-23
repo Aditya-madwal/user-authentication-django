@@ -9,34 +9,40 @@
     />
     <style>
       body {
-        background-color: #292b2c;
-        /* Dark background color */
-        color: #fff;
-        /* Light text color */
-        font-family: Arial, sans-serif;
-        text-align: center;
         padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
       }
 
       form {
-        display: inline-block;
-        text-align: left;
-        background-color: #343a40;
-        /* Darker background for the form */
+        width: 600px;
         padding: 20px;
-        border-radius: 10px;
-        width: 800px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       }
 
       div {
+        display: flex;
+        justify-content: space-around;
         margin-bottom: 10px;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        margin-right: 40px;
+        margin-left: 40px;
       }
 
       input[type="submit"] {
         background-color: #28a745;
-        /* Green submit button */
         color: #fff;
-        padding: 10px 20px;
+        padding: 10px;
         border: none;
         border-radius: 5px;
         cursor: pointer;
@@ -45,33 +51,32 @@
 
       input[type="submit"]:hover {
         background-color: #218838;
-        /* Darker green on hover */
+      }
+
+      a {
+        display: block;
+        text-align: center;
+        margin-top: 10px;
+        color: #007bff;
+        text-decoration: none;
+      }
+
+      .alert-danger {
+        margin-top: 10px;
       }
     </style>
   </head>
 
-  <body style="padding: 20px">
+  <body>
     <form method="post">
       {% csrf_token %}
-      <div style="display: flex; justify-content: space-around">
-        {{form.username.label}}{{form.username}}
-      </div>
-      <br />
-      <div style="display: flex; justify-content: space-around">
-        {{form.email.label}}{{form.email}}
-      </div>
-      <br />
-      <div style="display: flex; justify-content: space-around">
-        {{form.password1.label}}{{form.password1}}
-      </div>
-      <br/>
-      <div style="display: flex; justify-content: space-around">
-        {{form.password2.label}}{{form.password2}}
-      </div>
+      <div>{{form.username.label}} {{form.username}}</div>
+      <div>{{form.email.label}} {{form.email}}</div>
+      <div>{{form.password1.label}} {{form.password1}}</div>
+      <div>{{form.password2.label}} {{form.password2}}</div>
       {{form.errors}}
-      <br>
       <input type="submit" class="btn btn-success" value="submit" />
-      <a href = {% url 'login' %}>Login karega?</a>
+      <a href="{% url 'login' %}">Login karega?</a>
     </form>
   </body>
 </html>
